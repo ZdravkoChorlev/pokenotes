@@ -11,3 +11,9 @@
 - [ ] Speech to text notes
 - [ ] Voice notes
 - [ ] Drawing notes
+- [ ] Text to speech notes, to listen instead read
+
+### In progress
+
+- Background process to listen for the event of pressing note key bind
+- GUI to display the note input window and return the note as string
