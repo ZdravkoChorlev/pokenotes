@@ -17,3 +17,8 @@
 
 - Background process to listen for the event of pressing note key bind
 - GUI to display the note input window and return the note as string
+
+### How to start the program
+
+Run as process
+- ```python main.py &```
