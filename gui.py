@@ -21,9 +21,14 @@ TEXT_START_OFFSET_Y = 15
 
 TEXT_COLOR = (200, 200, 200)
 
+BACKSPACE_NEXT_DELETE_TIME = 0
+BACKSPACE_DELETE_INTERVAL_DELAY = 50
+
 
 def GetNoteText():
     "Create text box for the user input. Save the user input."
+    global BACKSPACE_NEXT_DELETE_TIME
+    global BACKSPACE_DELETE_INTERVAL_DELAY
     pygame.init()
     clock = pygame.time.Clock()
     display = pygame.display.set_mode(
@@ -78,8 +83,12 @@ def GetNoteText():
                 if event.key == pygame.K_BACKSPACE:
                     backspace_down = False
 
-        if backspace_down:
+        if backspace_down and (pygame.time.get_ticks() > BACKSPACE_NEXT_DELETE_TIME):
             text = text[:-1]
+            BACKSPACE_NEXT_DELETE_TIME = pygame.time.get_ticks() + BACKSPACE_DELETE_INTERVAL_DELAY
+
+        if not backspace_down:
+            BACKSPACE_NEXT_DELETE_TIME = pygame.time.get_ticks()
 
         display.fill(BLACK_COLOR)
         pygame.draw.rect(display, BACKGROUND_RECT_COLOR, background_rect)
